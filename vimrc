@@ -1,3 +1,33 @@
+
+"" search
+" highlight search
+set hlsearch
+
+" search as you type
+set incsearch
+
+"" trailing whitespaces
+function! CleanWhiteSpace()
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  :%s/\s\+$//e
+  let @/=_s
+  call cursor(l, c)
+endfunction()
+
+command! -nargs=0 CleanWhiteSpace :call CleanWhiteSpace()
+
+" remove trailing whitespaces when saving:
+autocmd bufwritepre * :CleanWhiteSpace
+
+"" tabulations
+set shiftwidth=2
+set expandtab
+set smarttab
+set smartindent
+set tabstop=2
+
 "syntax on
 "filetype plugin on
 "set nocompatible
@@ -17,11 +47,7 @@
 "" smarter behavior of 'J' (join lines)
 "set nojoinspaces
 "
-"" highlight search
-"set hlsearch
-"
-"" search as you type
-"set incsearch
+
 "" The correct way to remove highlight is:
 "" :let @/=""
 "
@@ -57,23 +83,6 @@
 "  set formatprg=par
 "end
 "
-"""
-"" A few useful functions:
-"
-"" Remove trailing whitespace
-"function! CleanWhiteSpace()
-"  let _s=@/
-"  let l = line(".")
-"  let c = col(".")
-"  :%s/\s\+$//e
-"  let @/=_s
-"  call cursor(l, c)
-"endfunction()
-"
-"command! -nargs=0 CleanWhiteSpace :call CleanWhiteSpace()
-"
-"" Remove trailing whitespaces when saving:
-"autocmd bufwritepre * :CleanWhiteSpace
 "
 "" Convert DOS line endings to UNIX line endings
 "
@@ -91,15 +100,7 @@
 "
 "" More logical, but not vi-compatible
 "noremap Y y$
-"
-"" Tabulations
-"set shiftwidth=2
-"set expandtab
-"set smarttab
-"set smartindent
-"set tabstop=4
-"
-"
+
 "
 "" Status line (requires VimBuddy plugin to be present)
 "set statusline=%{VimBuddy()}\ [%n]\ %<%f\ %{fugitive#statusline()}%h%m%r%=%-14.(%l,%c%V%)\ %P\ %a
