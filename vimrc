@@ -28,6 +28,12 @@ set smarttab
 set smartindent
 set tabstop=2
 
+"" status line
+" always present
+set laststatus=2
+" and customly rendered (needs VimBuddy)
+set statusline=%{VimBuddy()}\ [%n]\ %<%f\ %{fugitive#statusline()}%h%m%r%=%-14.(%l,%c%V%)\ %P\ %a
+
 "syntax on
 "filetype plugin on
 "set nocompatible
@@ -70,9 +76,6 @@ set tabstop=2
 "" Disable useless ctrl+space behavior:
 "imap <Nul> <Space>
 "
-"" Always display statusline
-"set laststatus=2
-"
 "" Always load those useful plugins:
 "runtime! macros/matchit.vim
 "runtime! plugin/imaps.vim
@@ -101,11 +104,6 @@ set tabstop=2
 "" More logical, but not vi-compatible
 "noremap Y y$
 
-"
-"" Status line (requires VimBuddy plugin to be present)
-"set statusline=%{VimBuddy()}\ [%n]\ %<%f\ %{fugitive#statusline()}%h%m%r%=%-14.(%l,%c%V%)\ %P\ %a
-"
-"
 """
 "" Few keybindings
 "
